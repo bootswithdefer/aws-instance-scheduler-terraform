@@ -45,7 +45,7 @@ resource "aws_dynamodb_table_item" "config" {
     "S": "${var.default_timezone}"
   },
   "name": {
-    "S": "${var.stack_name}"
+    "S": "scheduler"
   },
   "regions": {
     "SS": ${jsonencode(var.regions)}
