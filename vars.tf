@@ -11,21 +11,21 @@ variable "scheduling_active" {
 }
 
 variable "scheduled_services" {
-  type        = string
+  type        = list(string)
   description = "Scheduled Services. (ec2, rds, or ec2,rds)"
-  default     = "ec2"
+  default     = ["ec2"]
 }
 
 variable "schedule_clusters" {
   type        = string
   description = "Enable scheduling of Aurora clusters for RDS Service."
-  default     = "False"
+  default     = "false"
 }
 
 variable "create_rds_snapshot" {
   type        = string
   description = "Create snapshot before stopping RDS instances(does not apply to Aurora Clusters)."
-  default     = "True"
+  default     = "true"
 }
 
 variable "memory_size" {
@@ -37,7 +37,7 @@ variable "memory_size" {
 variable "use_metrics" {
   type        = string
   description = "Collect instance scheduling data using CloudWatch metrics."
-  default     = "True"
+  default     = "true"
 }
 
 variable "log_retention_days" {
@@ -49,7 +49,7 @@ variable "log_retention_days" {
 variable "trace" {
   type        = string
   description = "Enable logging of detailed informtion in CloudWatch logs."
-  default     = "False"
+  default     = "false"
 }
 
 variable "tag_name" {
@@ -67,7 +67,7 @@ variable "default_timezone" {
 variable "regions" {
   type        = list(string)
   description = "List of regions in which instances are scheduled, leave blank for current region only."
-  default     = []
+  default     = ["us-west-2"]
 }
 
 variable "cross_account_roles" {
@@ -97,13 +97,13 @@ variable "scheduler_frequency" {
 variable "schedule_lambda_account" {
   type        = string
   description = "Schedule instances in this account."
-  default     = "True"
+  default     = "true"
 }
 
 variable "send_anonymous_data" {
   type        = string
   description = "Send Anonymous Metrics Data."
-  default     = "False"
+  default     = "false"
 }
 
 variable "function_version" {

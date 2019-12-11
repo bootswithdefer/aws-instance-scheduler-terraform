@@ -31,3 +31,52 @@ resource "aws_dynamodb_table" "config" {
     type = "S"
   }
 }
+
+resource "aws_dynamodb_table_item" "config" {
+  table_name = aws_dynamodb_table.config.name
+  hash_key   = aws_dynamodb_table.config.hash_key
+
+  item = <<ITEM
+{
+  "create_rds_snapshot": {
+    "BOOL": ${var.create_rds_snapshot}
+  },
+  "default_timezone": {
+    "S": "${var.default_timezone}"
+  },
+  "name": {
+    "S": "${var.stack_name}"
+  },
+  "regions": {
+    "SS": ${jsonencode(var.regions)}
+  },
+  "schedule_clusters": {
+    "BOOL": ${var.schedule_clusters}
+  },
+  "schedule_lambda_account": {
+    "BOOL": ${var.schedule_lambda_account}
+  },
+  "scheduled_services": {
+    "SS": ${jsonencode(var.scheduled_services)}
+  },
+  "started_tags": {
+    "S": "${var.started_tags}"
+  },
+  "stopped_tags": {
+    "S": "${var.stopped_tags}"
+  },
+  "tagname": {
+    "S": "${var.tag_name}"
+  },
+  "trace": {
+    "BOOL": ${var.trace}
+  },
+  "type": {
+    "S": "config"
+  },
+  "use_metrics": {
+    "BOOL": ${var.use_metrics}
+  }
+}
+ITEM
+}
