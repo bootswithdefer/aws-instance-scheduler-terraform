@@ -27,7 +27,7 @@ resource "aws_lambda_function" "scheduler" {
       SOLUTION_ID            = "S00030"
       TRACE                  = var.trace
       METRICS_URL            = "https://metrics.awssolutionsbuilder.com/generic"
-      SCHEDULER_RULE         = aws_cloudwatch_event_rule.scheduler.arn
+      SCHEDULER_RULE         = aws_cloudwatch_event_rule.scheduler.name
     }
   }
 }
