@@ -35,6 +35,7 @@ resource "aws_dynamodb_table" "config" {
 resource "aws_dynamodb_table_item" "config" {
   table_name = aws_dynamodb_table.config.name
   hash_key   = aws_dynamodb_table.config.hash_key
+  range_key  = aws_dynamodb_table.config.range_key
 
   item = <<ITEM
 {
